@@ -50,11 +50,11 @@ Data array looks like this:
 ```php
 $pureData = [
     'street' => 'Thomas Edisson Av',
-    'buildingNumber => '34a',
-    'apartamentNumber' => '11',
-    'postalCode' => 'NG10-34Q,
+    'buildingNumber' => '34a',
+    'apartamentNumber'' => '11',
+    'postalCode' => 'NG10-34Q',
     'town' => 'Nottingham',
-    'countryCode => 'UK'
+    'countryCode' => 'UK'
 ];
 ```
 It is nothing more than mapping object structure to an array. But is start shinning with more complex structures.
