@@ -51,7 +51,7 @@ Data array looks like this:
 $pureData = [
     'street' => 'Thomas Edisson Av',
     'buildingNumber' => '34a',
-    'apartamentNumber'' => '11',
+    'apartamentNumber' => '11',
     'postalCode' => 'NG10-34Q',
     'town' => 'Nottingham',
     'countryCode' => 'UK'
