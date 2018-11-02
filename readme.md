@@ -1,12 +1,18 @@
-# Didler - your personal laboratory assistant
+# Didler -s afe serialization/deserialization utilility with dead simple config
 
-![Didler](didler.jpg)
+Didler is super happy to convert any object to an array for you. It also here to reconsistute the object from pure array
+data. At my company we happily use Didler to help us store our aggregates into the database. In case you struggle with 
+CQRS approachat your side you may find him usefull as well. Think of Didler as of your personal laboratory assistant.
+He can't wait to help you rule the world tonignt.
 
-This utility allows to convert any object to an array. Building live object based on array data is also featured.
-At my company we happily use Didler to store our aggregates into the database. In case you struggle with CQRS approach
-at your side you may find it usefull as well.
+## Motivation
 
-Core features:
+Build-in php serialize/unserialize functions works fine until you are not about to change your objects. Then it becomes
+impossibne to unserialize prevoisly serialized object. I have found few similar tools on github but wasn't happy with
+any mainly because of hard config.
+
+## Core features
+
 - working with privete/proteced properties
 - handling nested objects
 - handling recurrent nesting
