@@ -3,7 +3,7 @@
 namespace Ayeo\Didler\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Ayeo\Didler\Distilator;
+use Ayeo\Didler\Distillator;
 use Ayeo\Didler\Tests\Sample\NestedObject;
 use Ayeo\Didler\Tests\Sample\ObjectWithArray;
 use Ayeo\Didler\Tests\Sample\ObjectWithName;
@@ -11,9 +11,9 @@ use Ayeo\Didler\Tests\Sample\SampleClass;
 
 class DistilatorTest extends TestCase
 {
-    private function getDistilator(): Distilator
+    private function getDistilator(): Distillator
     {
-        return new Distilator();
+        return new Distillator();
     }
 
     /**

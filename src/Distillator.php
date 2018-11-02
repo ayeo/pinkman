@@ -2,23 +2,18 @@
 
 namespace Ayeo\Didler;
 
-class Distilator
+class Distillator
 {
     /**
      * todo: method must detect if any class overwrites private properties (using same property name)
      */
-    public function process(object $victim, bool $filterEmpty = false): array
+    public function process(object $victim): array
     {
         $result = [];
         $parents = array_merge([get_class($victim)], $this->getParentClasses($victim));
         foreach ($parents as $parent) {
             $result = array_merge($result, array_merge($result, $this->getOneLevel($victim, $parent)));
         }
-
-        if ($filterEmpty) {
-            return $this->filterEmpty($result);
-        }
-
         return $result;
     }
 
@@ -78,23 +73,6 @@ class Distilator
         } else {
             return [];
         }
-    }
-
-    private function filterEmpty(array $data): array
-    {
-        foreach ($data as $key => $item) {
-            if (is_null($item)) {
-                unset($data[$key]);
-            } elseif (is_array($item)) {
-                if (count($item) === 0) {
-                    unset($data[$key]);
-                } else {
-                    $data[$key] = $this->filterEmpty($data[$key]);
-                }
-            }
-        }
-
-        return $data;
     }
 
     public function setStrings(array $classesToString)
