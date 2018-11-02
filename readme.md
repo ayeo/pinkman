@@ -9,7 +9,7 @@ He can't wait to help you rule the world tonignt.
 
 Build-in php serialize/unserialize functions works fine until you are not about to change your objects. Then it becomes
 impossibne to unserialize prevoisly serialized object. I have found few similar tools on github but wasn't happy with
-any mainly because of hard config.
+any mainly because of heavy config.
 
 ## Core features
 
