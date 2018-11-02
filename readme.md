@@ -1,6 +1,6 @@
 # Didler - your personal laboratory assistant
 
-![Didler](didler.jpg)
+![Didler](didler.jpg =400x)
 
 This utility allows to convert any object to an array. Building live object based on array data is also featured.
 At my company we happily use Didler to store our aggregates into the database. In case you struggle with CQRS approach
