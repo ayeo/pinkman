@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ayeo/didler.svg?branch=master)](https://travis-ci.org/ayeo/didler) 
 [![Coverage](https://codecov.io/gh/ayeo/didler/branch/master/graph/badge.svg)](https://codecov.io/gh/ayeo/didler)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.md)
 
 Notice: Didler is still not at stable stage yet. Use carefully. 
 
