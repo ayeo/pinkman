@@ -1,4 +1,4 @@
-# Didler -s afe serialization/deserialization utilility with dead simple config
+# Didler is safe serialization/deserialization utilility with dead simple config
 
 Didler is super happy to convert any object to an array for you. It also here to reconsistute the object from pure array
 data. At my company we happily use Didler to help us store our aggregates into the database. In case you struggle with 
