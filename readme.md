@@ -4,7 +4,7 @@
 [![Coverage](https://codecov.io/gh/ayeo/didler/branch/master/graph/badge.svg)](https://codecov.io/gh/ayeo/didler)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.md)
 
-Notice: Didler is still not at stable stage yet. Use carefully. 
+Notice: Didler is not at stable stage yet. Use carefully. 
 
 Didler is super happy to convert any object to an array for you. It also here to reconsistute the object from pure array
 data. At my company we happily use Didler to help us store our aggregates into the database. In case you struggle with 
