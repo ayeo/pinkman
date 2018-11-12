@@ -1,14 +1,14 @@
-# Didler is safe serialization/deserialization utilility with dead simple config
+# Pinkman is safe serialization/deserialization utilility with dead simple config
 
-[![Build Status](https://travis-ci.org/ayeo/didler.svg?branch=master)](https://travis-ci.org/ayeo/didler) 
-[![Coverage](https://codecov.io/gh/ayeo/didler/branch/master/graph/badge.svg)](https://codecov.io/gh/ayeo/didler)
+[![Build Status](https://travis-ci.org/ayeo/didler.svg?branch=master)](https://travis-ci.org/ayeo/pinkman) 
+[![Coverage](https://codecov.io/gh/ayeo/didler/branch/master/graph/badge.svg)](https://codecov.io/gh/ayeo/pinkman)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.md)
 
-Notice: Didler is not at stable stage yet. Use carefully. 
+Notice: Pinkman is still not at stable stage yet. Use carefully. 
 
-Didler is super happy to convert any object to an array for you. It also here to reconsistute the object from pure array
+Pinkman is super happy to convert any object to an array for you. It also here to reconsistute the object from pure array
 data. At my company we happily use Didler to help us store our aggregates into the database. In case you struggle with 
-CQRS approachat your side you may find him usefull as well. Think of Didler as of your personal laboratory assistant.
+CQRS approachat your side you may find him usefull as well. Think of Pinkman as of your personal laboratory assistant.
 He can't wait to help you rule the world tonignt.
 
 ## Motivation
@@ -55,9 +55,11 @@ class Address
 Converting to an array is straitforward
 
 ```php
+use Ayeo/Pinkman/Pinkaman;
+
 $address = new Address('Thomas Edisson Av', '34a', '11', 'NG10-32Q', 'Nottingham', 'UK');
-$didler = new Didler()
-$pureData = $didler->distill($address);
+$pinkman = new Pinkman()
+$pureData = $pinkman->distill($address);
 ```
 
 Data array looks like this:
@@ -81,7 +83,7 @@ need to provide adequate config. In our simple scenario looks like this:
 $config = [
     'class' => Address::class
 ];
-$object = $didler->hydrate($pureData, $config);
+$object = $pinkman->hydrate($pureData, $config);
 ```
 
 More elaborate and complex examples are comming your way

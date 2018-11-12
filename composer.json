@@ -1,5 +1,5 @@
 {
-    "name": "ayeo/didler",
+    "name": "ayeo/pinkman",
     "description": "Simple serialization/deserialization util",
     "keywords": ["serialize", "serializer", "deserializer"],
     "type": "library",
@@ -12,8 +12,8 @@
     ],
     "autoload": {
       "psr-4": {
-        "Ayeo\\Didler\\": "src/",
-        "Ayeo\\Didler\\Tests\\": "tests/"
+        "Ayeo\\Pinkman\\": "src/",
+        "Ayeo\\Pinkman\\Tests\\": "tests/"
       }
     },
     "require": {

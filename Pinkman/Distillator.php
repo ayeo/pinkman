@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ayeo\Didler;
+namespace Ayeo\Pinkman;
 
 class Distillator
 {

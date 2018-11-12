@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Ayeo\Didler\Tests;
+namespace Ayeo\Pinkman\Tests;
 
-use Ayeo\Didler\Hydrator;
-use Ayeo\Didler\Tests\Sample\ExtendedObjectWithPrivate;
-use Ayeo\Didler\Tests\Sample\Recursive;
+use Ayeo\Pinkman\Hydrator;
+use Ayeo\Pinkman\Tests\Sample\ExtendedObjectWithPrivate;
+use Ayeo\Pinkman\Tests\Sample\Recursive;
 use PHPUnit\Framework\TestCase;
 
 class HydratorTest extends TestCase

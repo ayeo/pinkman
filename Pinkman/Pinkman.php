@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ayeo\Didler;
+namespace Ayeo\Pinkman;
 
-class Didler
+class Pinkman
 {
     /** @var Distillator */
     private $distillator;
