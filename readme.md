@@ -1,7 +1,7 @@
 # Pinkman is safe serialization/deserialization utilility with dead simple config
 
-[![Build Status](https://travis-ci.org/ayeo/didler.svg?branch=master)](https://travis-ci.org/ayeo/pinkman) 
-[![Coverage](https://codecov.io/gh/ayeo/didler/branch/master/graph/badge.svg)](https://codecov.io/gh/ayeo/pinkman)
+[![Build Status](https://travis-ci.org/ayeo/pinkman.svg?branch=master)](https://travis-ci.org/ayeo/pinkman) 
+[![Coverage](https://codecov.io/gh/ayeo/pinkman/branch/master/graph/badge.svg)](https://codecov.io/gh/ayeo/pinkman)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.md)
 
 Notice: Pinkman is still not at stable stage yet. Use carefully. 
