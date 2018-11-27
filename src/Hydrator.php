@@ -6,13 +6,18 @@ use ReflectionClass;
 
 class Hydrator
 {
-    public function process($data, array $config, array $fullData = [])
+    public function process(array $data, array $config, array $fullData = [])
     {
-        $isCollection = isset($config['class']) === false && isset($config['content']) === true;
+        $isCollection = is_array($data) && isset($config['class']) === false && isset($config['content']) === true;
         if ($isCollection) {
             foreach ($data as $key => $subset) {
-                $cur = $this->buildContentArray($config['content'] ?? [], $subset, $fullData);
-                $value[$key] = $this->process($subset, $cur);
+                if (is_array($subset)) {
+                    $cur = $this->buildContentArray($config['content'] ?? [], $subset, $fullData);
+                    $value[$key] = $this->process($subset, $cur);
+                } else {
+                    $value[$key] = $this->buildValue($data, $config, $fullData);
+                }
+
             }
 
             return $value;
@@ -54,7 +59,7 @@ class Hydrator
                     if (is_callable($currentConfig)) {
                         $currentConfig = $currentConfig();
                     }
-                    if (isset($currentConfig['class'])) {
+                    if (isset($currentConfig['class']) && is_array($data[$fieldName])) {
                         $subValue = $this->process($data[$fieldName], $currentConfig, $data);
                         $this->setPrivateProperty($object, $fieldName, $subValue);
                         unset($subValue);
