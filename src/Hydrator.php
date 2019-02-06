@@ -20,7 +20,7 @@ class Hydrator
 
             }
 
-            return $value;
+            return $value ?? [];
         } else {
             if (isset($config['class'])) {
                 return $this->buildValue($data, $config, $fullData);
