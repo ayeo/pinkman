@@ -63,7 +63,7 @@ class Hydrator
                         $subValue = $this->process($data[$fieldName], $currentConfig, $data);
                         $this->setPrivateProperty($object, $fieldName, $subValue);
                         unset($subValue);
-                    } elseif ($currentConfig['content'] ?? []) {
+                    } elseif (($currentConfig['content'] ?? []) && count($data[$fieldName] ?? [])) {
                         $subValue = [];
                         foreach ($data[$fieldName] ?? [] as $key => $subData) {
                             $x = $this->buildContentArray($currentConfig['content'], $subData, $fullData);
