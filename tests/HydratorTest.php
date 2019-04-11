@@ -3,7 +3,11 @@
 namespace Ayeo\Pinkman\Tests;
 
 use Ayeo\Pinkman\Hydrator;
+use Ayeo\Pinkman\Tests\Sample\Child;
 use Ayeo\Pinkman\Tests\Sample\ExtendedObjectWithPrivate;
+use Ayeo\Pinkman\Tests\Sample\NestedAsArrayItem;
+use Ayeo\Pinkman\Tests\Sample\ObjectWithArray;
+use Ayeo\Pinkman\Tests\Sample\ObjectWithOptionalObject;
 use Ayeo\Pinkman\Tests\Sample\Recursive;
 use PHPUnit\Framework\TestCase;
 
@@ -111,6 +115,32 @@ class HydratorTest extends TestCase
 
         $config = $this->getConfig()['content'];
         $this->assertEquals($recursive0, $this->getHydrator()->process($data, $config));
+    }
+
+    public function testWithOptionalObject()
+    {
+        $data = [
+            'nestedAsArrayItem' => null
+        ];
+
+        $expected = new ObjectWithOptionalObject(null);
+        $config = [
+            'class' => ObjectWithOptionalObject::class,
+            'content' => [
+                'nestedAsArrayItem' => [
+                    'class' => NestedAsArrayItem::class,
+                    'content' => [
+                        'array' => [
+                            'content' => [
+                                'class' => Child::class
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->assertEquals($expected, $this->getHydrator()->process($data, $config));
     }
 
     private function getConfig(): array
