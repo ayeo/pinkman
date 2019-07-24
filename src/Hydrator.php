@@ -17,7 +17,6 @@ class Hydrator
                 } else {
                     $value[$key] = $this->buildValue($data, $config, $fullData);
                 }
-
             }
 
             return $value ?? [];
@@ -65,6 +64,10 @@ class Hydrator
                         unset($subValue);
                     } elseif (($currentConfig['content'] ?? []) && count($data[$fieldName] ?? [])) {
                         $subValue = [];
+                        if (isset($data[$fieldName]) === false) {
+                            continue;
+                        }
+
                         foreach ($data[$fieldName] ?? [] as $key => $subData) {
                             $x = $this->buildContentArray($currentConfig['content'], $subData, $fullData);
                             $subValue[$key] = $this->process($subData, $x);
