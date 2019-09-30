@@ -7,7 +7,7 @@
 Notice: Pinkman is still not at stable stage yet. Use carefully. 
 
 Pinkman is super happy to convert any object to an array for you. It also here to reconsistute the object from pure array
-data. At my company we happily use Didler to help us store our aggregates into the database. In case you struggle with 
+data. At my company we happily use Pinkman to help us store our aggregates into the database. In case you struggle with 
 CQRS approachat your side you may find him usefull as well. Think of Pinkman as of your personal laboratory assistant.
 He can't wait to help you rule the world tonignt.
 
