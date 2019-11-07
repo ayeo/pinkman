@@ -15,9 +15,9 @@ class Pinkman
         $this->hydrator = new Hydrator();
     }
 
-    public function distill(object $object, bool $filterEmpty = false): array
+    public function distill(object $object, bool $filterEmpty = false, array $skip = []): array
     {
-        $result = $this->distillator->process($object);
+        $result = $this->distillator->process($object, $skip);
 
         if ($filterEmpty) {
             return $this->filterEmpty($result);

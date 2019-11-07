@@ -7,20 +7,24 @@ class Distillator
     /**
      * todo: method must detect if any class overwrites private properties (using same property name)
      */
-    public function process(object $victim): array
+    public function process(object $victim, array $skip = []): array
     {
         $result = [];
         $parents = array_merge([get_class($victim)], $this->getParentClasses($victim));
         foreach ($parents as $parent) {
-            $result = array_merge($result, array_merge($result, $this->getOneLevel($victim, $parent)));
+            $result = array_merge($result, array_merge($result, $this->getOneLevel($victim, $parent, $skip)));
         }
         return $result;
     }
 
-    private function getOneLevel(object $victim, string $parent): array
+    private function getOneLevel(object $victim, string $parent, array $skip): array
     {
         $result = [];
         foreach ($this->getProperties($victim, $parent) as $propertyName) {
+            if (in_array($propertyName, $skip)) {
+                continue;
+            }
+            
             $property = $this->getProperty($victim, $propertyName, $parent);
             $result[$propertyName] = $this->handle($property);
         }
