@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Ayeo\Pinkman;
 
@@ -6,6 +8,7 @@ class Pinkman
 {
     /** @var Distillator */
     private $distillator;
+
     /** @var Hydrator */
     private $hydrator;
 
@@ -15,10 +18,9 @@ class Pinkman
         $this->hydrator = new Hydrator();
     }
 
-    public function distill(object $object, bool $filterEmpty = false): array
+    public function distill(object $object, bool $filterEmpty = false, array $config = []): array
     {
-        $result = $this->distillator->process($object);
-
+        $result = $this->distillator->process($object, $config);
         if ($filterEmpty) {
             return $this->filterEmpty($result);
         }

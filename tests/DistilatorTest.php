@@ -89,6 +89,22 @@ class DistilatorTest extends TestCase
         $this->assertEquals($expected, $this->getDistilator()->process($testClass));
     }
 
+    public function testSkipping(): void
+    {
+        $testClass = new SampleClass();
+        $config = [
+            'class' => 'SampleClass',
+            'content' => [
+                'privateProperty' => false
+            ]
+        ];
+        $expected = [
+            'protectedProperty' => 'protected value',
+            'publicProperty' => 'public value'
+        ];
+        $this->assertEquals($expected, $this->getDistilator()->process($testClass, $config));
+    }
+
 //    public function testPrivateParentProperty()
 //    {
 //        $testClass = new Child();

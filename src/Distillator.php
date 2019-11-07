@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Ayeo\Pinkman;
 
@@ -7,21 +9,25 @@ class Distillator
     /**
      * todo: method must detect if any class overwrites private properties (using same property name)
      */
-    public function process(object $victim): array
+    public function process(object $victim, array $config = []): array
     {
         $result = [];
         $parents = array_merge([get_class($victim)], $this->getParentClasses($victim));
         foreach ($parents as $parent) {
-            $result = array_merge($result, array_merge($result, $this->getOneLevel($victim, $parent)));
+            $result = array_merge($result, array_merge($result, $this->getOneLevel($victim, $parent, $config)));
         }
         return $result;
     }
 
-    private function getOneLevel(object $victim, string $parent): array
+    private function getOneLevel(object $victim, string $parent, array $config): array
     {
         $result = [];
         foreach ($this->getProperties($victim, $parent) as $propertyName) {
-            $property = $this->getProperty($victim, $propertyName, $parent);
+            if (isset($config['content'][$propertyName]) && $config['content'][$propertyName] === false) {
+                continue;
+            }
+
+            $property = $this->getProperty($victim, $propertyName, $parent, $config['content'] ?? []);
             $result[$propertyName] = $this->handle($property);
         }
 
