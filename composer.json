@@ -1,5 +1,6 @@
 {
     "name": "ayeo/pinkman",
+    "version": "0.1.0",
     "description": "Simple serialization/deserialization util",
     "keywords": ["serialize", "serializer", "deserializer"],
     "type": "library",
