@@ -17,6 +17,12 @@ Build-in php serialize/unserialize functions works fine until you are not about 
 impossibne to unserialize prevoisly serialized object. I have found few similar tools on github but wasn't happy with
 any mainly because of heavy config.
 
+## Install
+
+```
+composer require ayeo/pinkman:0.1.0
+```
+
 ## Core features
 
 - working with privete/proteced properties
