@@ -27,27 +27,39 @@ class Distillator
                 return ['vo' => (string)$victim];
             }
 
+            if (isset($config['content']) && is_callable($config['content'])) {
+                $ddd = $config['content'];
+                $config = $ddd($victim, $ddd);
+            }
+
             if (isset($config['content'][$propertyName]) && $config['content'][$propertyName] === false) {
                 continue;
             }
 
             $property = $this->getProperty($victim, $propertyName, $parent, $config['content'] ?? []);
-            $result[$propertyName] = $this->handle($property);
+            $result[$propertyName] = $this->handle($property, $config['content'][$propertyName] ?? []);
         }
 
         return $result;
     }
 
-    private function handle($property)
+    private function handle($property, $config)
     {
         if (is_object($property)) {
-            return $this->process($property);
+            return $this->process($property, $config);
         }
+
+        $c = $config['content'] ?? [];
 
         if (is_array($property)) {
             $tmp = [];
             foreach ($property as $key => $prop) {
-                $tmp[$key] = $this->handle($prop);
+                if (is_callable($c)) {
+                    $sparta = $this->handle($prop, []);
+                    $c = $c($sparta);
+                }
+
+                $tmp[$key] = $this->handle($prop, $c);
             }
 
             return $tmp;

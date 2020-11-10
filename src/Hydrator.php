@@ -62,23 +62,32 @@ class Hydrator
                     if (is_callable($currentConfig)) {
                         $currentConfig = $currentConfig();
                     }
-                    if (isset($currentConfig['class']) && is_array($data[$fieldName])) {
-                        $subValue = $this->process($data[$fieldName], $currentConfig, $data);
-                        $this->setPrivateProperty($object, $fieldName, $subValue);
-                        unset($subValue);
-                    } elseif (($currentConfig['content'] ?? []) && count($data[$fieldName] ?? [])) {
-                        $subValue = [];
-                        if (isset($data[$fieldName]) === false) {
-                            continue;
-                        }
 
-                        foreach ($data[$fieldName] ?? [] as $key => $subData) {
-                            $x = $this->buildContentArray($currentConfig['content'], $subData, $fullData);
-                            $subValue[$key] = $this->process($subData, $x);
-                        }
-                        $this->setPrivateProperty($object, $fieldName, $subValue);
+                    if (isset($currentConfig['unaryVO'])) {
+                        $class = $currentConfig['unaryVO'];
+                        $this->setPrivateProperty($object, $fieldName, new $class($rawValue['vo']));
                     } else {
-                        $this->setPrivateProperty($object, $fieldName, $rawValue);
+                        if (is_callable($currentConfig)) {
+                            $currentConfig = $currentConfig();
+                        }
+                        if (isset($currentConfig['class']) && is_array($data[$fieldName])) {
+                            $subValue = $this->process($data[$fieldName], $currentConfig, $data);
+                            $this->setPrivateProperty($object, $fieldName, $subValue);
+                            unset($subValue);
+                        } elseif (($currentConfig['content'] ?? []) && count($data[$fieldName] ?? [])) {
+                            $subValue = [];
+                            if (isset($data[$fieldName]) === false) {
+                                continue;
+                            }
+
+                            foreach ($data[$fieldName] ?? [] as $key => $subData) {
+                                $x = $this->buildContentArray($currentConfig['content'], $subData, $fullData);
+                                $subValue[$key] = $this->process($subData, $x);
+                            }
+                            $this->setPrivateProperty($object, $fieldName, $subValue);
+                        } else {
+                            $this->setPrivateProperty($object, $fieldName, $rawValue);
+                        }
                     }
                 }
             }
