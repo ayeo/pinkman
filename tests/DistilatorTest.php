@@ -2,6 +2,7 @@
 
 namespace Ayeo\Pinkman\Tests;
 
+use Ayeo\Pinkman\Tests\Sample\UnaryVO;
 use PHPUnit\Framework\TestCase;
 use Ayeo\Pinkman\Distillator;
 use Ayeo\Pinkman\Tests\Sample\NestedObject;
@@ -103,6 +104,16 @@ class DistilatorTest extends TestCase
             'publicProperty' => 'public value'
         ];
         $this->assertEquals($expected, $this->getDistilator()->process($testClass, $config));
+    }
+
+    public function testHandlingUnaryVO(): void
+    {
+        $unaryVO = new UnaryVO('value');
+        $config = [
+            'unaryVO' => UnaryVO::class
+        ];
+
+        $result = $this->getDistilator()->process($unaryVO, $config);
     }
 
 //    public function testPrivateParentProperty()

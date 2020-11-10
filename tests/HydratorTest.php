@@ -9,6 +9,7 @@ use Ayeo\Pinkman\Tests\Sample\NestedAsArrayItem;
 use Ayeo\Pinkman\Tests\Sample\ObjectWithArray;
 use Ayeo\Pinkman\Tests\Sample\ObjectWithOptionalObject;
 use Ayeo\Pinkman\Tests\Sample\Recursive;
+use Ayeo\Pinkman\Tests\Sample\UnaryVO;
 use PHPUnit\Framework\TestCase;
 
 class HydratorTest extends TestCase
@@ -141,6 +142,15 @@ class HydratorTest extends TestCase
         ];
 
         $this->assertEquals($expected, $this->getHydrator()->process($data, $config));
+    }
+
+    public function testUnaryVO(): void
+    {
+        $data = ['vo' => 'value'];
+        $config = ['unaryVO' => UnaryVO::class];
+
+        $result = $this->getHydrator()->process($data, $config);
+        $this->assertEquals(new UnaryVO('value'), $result);
     }
 
     private function getConfig(): array

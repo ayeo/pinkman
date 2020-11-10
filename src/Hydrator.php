@@ -21,7 +21,11 @@ class Hydrator
 
             return $value ?? [];
         } else {
-            if (isset($config['class'])) {
+            if (isset($config['unaryVO'])) {
+                $class = $config['unaryVO'];
+
+                return new $class($data['vo']);
+            } elseif (isset($config['class'])) {
                 return $this->buildValue($data, $config, $fullData);
             } else {
                 $cur = $this->buildContentArray($config['content'] ?? [], $data, $fullData);

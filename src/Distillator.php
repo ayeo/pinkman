@@ -23,6 +23,10 @@ class Distillator
     {
         $result = [];
         foreach ($this->getProperties($victim, $parent) as $propertyName) {
+            if (isset($config['unaryVO'])) {
+                return ['vo' => (string)$victim];
+            }
+
             if (isset($config['content'][$propertyName]) && $config['content'][$propertyName] === false) {
                 continue;
             }
