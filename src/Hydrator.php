@@ -60,16 +60,13 @@ class Hydrator
                 } else {
                     $currentConfig = $cur[$fieldName] ?? [];
                     if (is_callable($currentConfig)) {
-                        $currentConfig = $currentConfig();
+                        $currentConfig = $currentConfig($rawValue);
                     }
 
                     if (isset($currentConfig['unaryVO'])) {
                         $class = $currentConfig['unaryVO'];
                         $this->setPrivateProperty($object, $fieldName, new $class($rawValue['vo']));
                     } else {
-                        if (is_callable($currentConfig)) {
-                            $currentConfig = $currentConfig();
-                        }
                         if (isset($currentConfig['class']) && is_array($data[$fieldName])) {
                             $subValue = $this->process($data[$fieldName], $currentConfig, $data);
                             $this->setPrivateProperty($object, $fieldName, $subValue);

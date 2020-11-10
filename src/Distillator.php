@@ -28,8 +28,8 @@ class Distillator
             }
 
             if (isset($config['content']) && is_callable($config['content'])) {
-                $ddd = $config['content'];
-                $config = $ddd($victim, $ddd);
+                $closure = $config['content'];
+                $config['content'] = $closure($this->handle($victim, []));
             }
 
             if (isset($config['content'][$propertyName]) && $config['content'][$propertyName] === false) {
@@ -50,15 +50,12 @@ class Distillator
         }
 
         $c = $config['content'] ?? [];
-
         if (is_array($property)) {
             $tmp = [];
             foreach ($property as $key => $prop) {
                 if (is_callable($c)) {
-                    $sparta = $this->handle($prop, []);
-                    $c = $c($sparta);
+                    $c = $c($this->handle($prop, []));
                 }
-
                 $tmp[$key] = $this->handle($prop, $c);
             }
 
