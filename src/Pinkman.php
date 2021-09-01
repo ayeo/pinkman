@@ -12,10 +12,10 @@ class Pinkman
     /** @var Hydrator */
     private $hydrator;
 
-    public function __construct()
+    public function __construct(?UpcasterInterface $upcaster = null)
     {
         $this->distillator = new Distillator();
-        $this->hydrator = new Hydrator();
+        $this->hydrator = new Hydrator($upcaster);
     }
 
     public function distill(object $object, bool $filterEmpty = false, array $config = []): array

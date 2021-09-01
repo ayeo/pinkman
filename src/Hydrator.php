@@ -1,11 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Ayeo\Pinkman;
 
+use PIM\Domain\FieldValues\FieldValues;
 use ReflectionClass;
 
 class Hydrator
 {
+    private ?UpcasterInterface $upcaster;
+
+    public function __construct(?UpcasterInterface $upcaster = null)
+    {
+        $this->upcaster = $upcaster;
+    }
+
     public function process(array $data, array $config, array $fullData = [])
     {
         $isCollection = is_array($data) && isset($config['class']) === false && isset($config['content']) === true;
@@ -38,9 +48,29 @@ class Hydrator
     {
         if (isset($config['class'])) {
             $className = $config['class'];
+
             if (is_callable($className)) {
                 $className = $className($data, $fullData);
             }
+
+            if (isset($this->upcaster)) {
+                if (isset($data['_version_'])) {
+                    $v = $data['_version_'];
+                } else {
+                    $v = 0;
+                }
+
+                if (defined($className.'::_VERSION_')) {
+                    $c = $className::_VERSION_;
+                } else {
+                    $c = 0;
+                }
+
+                if ($v !== $c) {
+                    $data = $this->upcaster->upcast($className, $data, $v, $c);
+                }
+            }
+
             $r = new ReflectionClass($className);
             $object = $r->newInstanceWithoutConstructor();
 

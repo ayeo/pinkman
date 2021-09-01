@@ -16,6 +16,11 @@ class Distillator
         foreach ($parents as $parent) {
             $result = array_merge($result, array_merge($result, $this->getOneLevel($victim, $parent, $config)));
         }
+
+        if (defined(get_class($victim).'::_VERSION_')) {
+            $result['_version_'] = $victim::_VERSION_;
+        }
+
         return $result;
     }
 
