@@ -106,15 +106,15 @@ class DistilatorTest extends TestCase
         $this->assertEquals($expected, $this->getDistilator()->process($testClass, $config));
     }
 
-    public function testHandlingUnaryVO(): void
-    {
-        $unaryVO = new UnaryVO('value');
-        $config = [
-            'unaryVO' => UnaryVO::class
-        ];
-
-        $result = $this->getDistilator()->process($unaryVO, $config);
-    }
+//    public function testHandlingUnaryVO(): void
+//    {
+//        $unaryVO = new UnaryVO('value');
+//        $config = [
+//            'unaryVO' => UnaryVO::class
+//        ];
+//
+//        $result = $this->getDistilator()->process($unaryVO, $config);
+//    }
 
 //    public function testPrivateParentProperty()
 //    {

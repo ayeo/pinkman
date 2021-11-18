@@ -41,7 +41,7 @@ class Distillator
                 continue;
             }
 
-            $property = $this->getProperty($victim, $propertyName, $parent, $config['content'] ?? []);
+            $property = $this->getProperty($victim, $propertyName, $parent);
             $result[$propertyName] = $this->handle($property, $config['content'][$propertyName] ?? []);
         }
 
@@ -97,10 +97,5 @@ class Distillator
         } else {
             return [];
         }
-    }
-
-    public function setStrings(array $classesToString)
-    {
-        $this->classesToString = $classesToString;
     }
 }
