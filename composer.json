@@ -1,6 +1,6 @@
 {
     "name": "ayeo/pinkman",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Simple serialization/deserialization util",
     "keywords": ["serialize", "serializer", "deserializer"],
     "type": "library",
@@ -18,9 +18,9 @@
       }
     },
     "require": {
-      "php": "^7.2"
+      "php": ">=7.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "9.3.0"
     }
 }
